@@ -1,28 +1,28 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { sql } from "../db.js";
+import { sql } from "./db.js";
 
 dotenv.config();
 
 const app = express();
 
-// =====================
-// MIDDLEWARE
-// =====================
+/* =====================
+   MIDDLEWARE
+===================== */
 app.use(cors());
 app.use(express.json());
 
-// =====================
-// HEALTH CHECK
-// =====================
+/* =====================
+   HEALTH CHECK
+===================== */
 app.get("/", (req, res) => {
   res.json({ ok: true, message: "API funcionando" });
 });
 
-// =====================
-// GET PRODUCTS
-// =====================
+/* =====================
+   GET PRODUCTS
+===================== */
 app.get("/products", async (req, res) => {
   try {
     const data = await sql`
@@ -43,9 +43,9 @@ app.get("/products", async (req, res) => {
   }
 });
 
-// =====================
-// CREATE PRODUCT
-// =====================
+/* =====================
+   CREATE PRODUCT
+===================== */
 app.post("/products", async (req, res) => {
   try {
     const { name, price, stock, category_id } = req.body;
@@ -62,9 +62,9 @@ app.post("/products", async (req, res) => {
   }
 });
 
-// =====================
-// UPDATE PRODUCT
-// =====================
+/* =====================
+   UPDATE PRODUCT
+===================== */
 app.patch("/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -86,9 +86,9 @@ app.patch("/products/:id", async (req, res) => {
   }
 });
 
-// =====================
-// DELETE PRODUCT
-// =====================
+/* =====================
+   DELETE PRODUCT
+===================== */
 app.delete("/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -103,18 +103,11 @@ app.delete("/products/:id", async (req, res) => {
   }
 });
 
-// =====================
-// TEST ROUTE (IMPORTANTE PARA DEBUG)
-// =====================
-app.get("/test", (req, res) => {
-  res.json({ ok: true });
-});
-
-// =====================
-// SERVER (RENDER READY)
-// =====================
+/* =====================
+   START SERVER (IMPORTANTE PARA RENDER)
+===================== */
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor funcionando en puerto ${PORT}`);
 });
