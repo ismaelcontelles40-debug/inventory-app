@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { sql } from "./db.js";
+import { sql } from "../db.js";
 
 dotenv.config();
 
@@ -17,7 +17,17 @@ app.use(express.json());
    HEALTH CHECK
 ===================== */
 app.get("/", (req, res) => {
-  res.json({ ok: true, message: "API funcionando" });
+  res.json({
+    message: "API de TaskFlow Fullstack funcionando correctamente",
+    ok: true
+  });
+});
+
+/* =====================
+   TEST ROUTE (IMPORTANTE)
+===================== */
+app.get("/test", (req, res) => {
+  res.json({ ok: true });
 });
 
 /* =====================
@@ -63,30 +73,6 @@ app.post("/products", async (req, res) => {
 });
 
 /* =====================
-   UPDATE PRODUCT
-===================== */
-app.patch("/products/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { name, price, stock, category_id } = req.body;
-
-    const result = await sql`
-      UPDATE products
-      SET name = ${name},
-          price = ${price},
-          stock = ${stock},
-          category_id = ${category_id}
-      WHERE id = ${id}
-      RETURNING *
-    `;
-
-    res.json(result[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-/* =====================
    DELETE PRODUCT
 ===================== */
 app.delete("/products/:id", async (req, res) => {
@@ -104,7 +90,7 @@ app.delete("/products/:id", async (req, res) => {
 });
 
 /* =====================
-   START SERVER (IMPORTANTE PARA RENDER)
+   SERVER (RENDER SAFE)
 ===================== */
 const PORT = process.env.PORT || 3000;
 
