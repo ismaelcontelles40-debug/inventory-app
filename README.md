@@ -1,17 +1,15 @@
 # Inventory App - Full Stack Project
 
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-
----
-
 # Descripción
 
-Aplicación full stack de gestión de inventario con operaciones CRUD, desarrollada con React en el frontend y Node.js + Express en el backend, usando PostgreSQL (Neon) como base de datos.
+Aplicación full stack de gestión de inventario con operaciones CRUD.
+
+Desarrollada con:
+- Frontend: React + Vite + TypeScript
+- Backend: Node.js + Express
+- Base de datos: PostgreSQL (Neon)
+
+Permite crear, listar, actualizar y eliminar productos con relación a categorías.
 
 ---
 
@@ -29,19 +27,53 @@ Aplicación full stack de gestión de inventario con operaciones CRUD, desarroll
 
 # Arquitectura del proyecto
 
-Frontend (React + Vite + TS)
-        ↓
+Frontend (React + Vite + TypeScript)
+↓
 API REST (Node.js + Express)
-        ↓
+↓
 Base de datos (PostgreSQL - Neon)
 
 ---
 
-#  Instalación
+# Instalación
 
-##  Backend
+## Clonar el repositorio
 
-```bash id="backend_install"
+git clone https://github.com/ismaelcontelles40-debug/inventory-app.git
+cd inventory-app
+
+---
+
+## Backend
+
 cd backend
 npm install
 npm run dev
+
+---
+
+## Frontend
+
+cd frontend
+npm install
+npm run dev
+
+---
+
+# Ejecución del proyecto
+
+Backend:
+cd backend
+npm install
+npm run dev
+
+Frontend:
+cd frontend
+npm install
+npm run dev
+
+---
+
+# Autor
+
+Ismael Contelles

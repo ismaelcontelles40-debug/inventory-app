@@ -8,7 +8,7 @@ type Product = {
   category: string;
 };
 
-const API_URL = "http://localhost:3000/products";
+const API_URL = "https://taskflow-fullstack-8emn.onrender.com/products";
 
 export default function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -22,9 +22,6 @@ export default function App() {
     category_id: "",
   });
 
-  // ======================
-  // LOAD DATA
-  // ======================
   const loadData = async () => {
     try {
       setLoading(true);
@@ -44,9 +41,6 @@ export default function App() {
     loadData();
   }, []);
 
-  // ======================
-  // CREATE PRODUCT
-  // ======================
   const createProduct = async () => {
     try {
       await fetch(API_URL, {
@@ -79,9 +73,6 @@ export default function App() {
     }
   };
 
-  // ======================
-  // DELETE PRODUCT
-  // ======================
   const deleteProduct = async (id: string) => {
     try {
       await fetch(`${API_URL}/${id}`, {
@@ -105,25 +96,19 @@ export default function App() {
         <input
           placeholder="Nombre"
           value={form.name}
-          onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
 
         <input
           placeholder="Precio"
           value={form.price}
-          onChange={(e) =>
-            setForm({ ...form, price: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, price: e.target.value })}
         />
 
         <input
           placeholder="Stock"
           value={form.stock}
-          onChange={(e) =>
-            setForm({ ...form, stock: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, stock: e.target.value })}
         />
 
         <select
@@ -147,21 +132,49 @@ export default function App() {
       ) : products.length === 0 ? (
         <p style={{ textAlign: "center" }}>No hay productos</p>
       ) : (
-        products.map((p) => (
-          <div className="card" key={p.id}>
-            <h3>{p.name}</h3>
-            <p>Precio: {p.price}€</p>
-            <p>Stock: {p.stock}</p>
-            <p>Categoría: {p.category}</p>
+        <table
+          style={{
+            width: "100%",
+            marginTop: 20,
+            borderCollapse: "collapse",
+            textAlign: "center",
+          }}
+        >
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Categoría</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
 
-            <button
-              style={{ background: "#ef4444" }}
-              onClick={() => deleteProduct(p.id)}
-            >
-              Eliminar
-            </button>
-          </div>
-        ))
+          <tbody>
+            {products.map((p) => (
+              <tr key={p.id}>
+                <td>{p.name}</td>
+                <td>{p.price}€</td>
+                <td>{p.stock}</td>
+                <td>{p.category}</td>
+                <td>
+                  <button
+                    onClick={() => deleteProduct(p.id)}
+                    style={{
+                      background: "red",
+                      color: "white",
+                      border: "none",
+                      padding: "5px 10px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );
