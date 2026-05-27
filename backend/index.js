@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { sql } from "./db.js";
+import { sql } from "../db.js";
 
 dotenv.config();
 
@@ -104,9 +104,16 @@ app.delete("/products/:id", async (req, res) => {
 });
 
 // =====================
-// SERVER (IMPORTANTE PARA RENDER)
+// TEST ROUTE (IMPORTANTE PARA DEBUG)
 // =====================
-const PORT = process.env.PORT || 10000;
+app.get("/test", (req, res) => {
+  res.json({ ok: true });
+});
+
+// =====================
+// SERVER (RENDER READY)
+// =====================
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Servidor funcionando en puerto ${PORT}`);
