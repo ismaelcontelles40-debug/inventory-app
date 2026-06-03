@@ -20,6 +20,15 @@ El frontend está desarrollado con React + Vite + TypeScript, aplicando arquitec
 
 ---
 
+---
+
+# Despliegue en producción
+
+La aplicación web ha sido desplegada en producción y se puede testear en vivo a través del siguiente enlace:
+
+Frontend en Vercel: https://inventory-app-p2l3.vercel.app
+
+---
 # Funcionalidades
 
 La aplicación incluye:
